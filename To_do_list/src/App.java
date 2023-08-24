@@ -100,14 +100,17 @@ public class App {
      */
     public static void viewShowTodoList() {
       while (true) {
+        System.out.println(" ");
         showTodoList();
-  
+
+        System.out.println(" ");
         System.out.println("MENU : ");
         System.out.println("1. Tambah");
         System.out.println("2. Ubah");
-        System.out.println("3. Keluar");
+        System.out.println("3. hapus");
         System.out.println("x. Keluar");
-  
+
+        System.out.println(" ");
         var input = input("Pilih");
   
         if (input.equals("1")) {
