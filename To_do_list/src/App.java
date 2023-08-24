@@ -1,6 +1,5 @@
-import java.util.Scanner;
 public class App {
-    public static String[] model = new String[10];
+    public static String[] model = new String[30];
 
     public static java.util.Scanner scanner = new java.util.Scanner(System.in);
   
@@ -22,13 +21,7 @@ public class App {
         }
       }
     }
-  
-    public static void testShowTodoList() {
-      model[0] = "Belajar Java Dasar";
-      model[1] = "Studi Kasus Java Dasar : Aplikasi Todolist";
-      showTodoList();
-    }
-  
+
     /**
      * Menambah todo ke list
      */
@@ -61,15 +54,19 @@ public class App {
         }
       }
     }
-  
-    public static void testAddTodoList() {
-      for (int i = 0; i < 25; i++) {
-        addTodoList("Contoh Todo Ke." + i);
-      }
-  
-      showTodoList();
+  /**
+   * 
+   * mengubah to do list
+   */
+  public static boolean editTodoList(int number, String newTodo) {
+    if (number > 0 && number <= model.length) {
+        model[number - 1] = newTodo;
+        return true;
     }
-  
+    return false;
+}
+
+
     /**
      * Mehapus todo dari list
      */
@@ -90,38 +87,13 @@ public class App {
       }
     }
   
-    public static void testRemoveTodoList() {
-      addTodoList("Satu");
-      addTodoList("Dua");
-      addTodoList("Tiga");
-      addTodoList("Empat");
-      addTodoList("Lima");
-  
-      var result = removeTodoList(20);
-      System.out.println(result);
-  
-      result = removeTodoList(7);
-      System.out.println(result);
-  
-      result = removeTodoList(2);
-      System.out.println(result);
-  
-      showTodoList();
-    }
-  
     public static String input(String info) {
       System.out.print(info + " : ");
       String data = scanner.nextLine();
       return data;
     }
   
-    public static void testInput() {
-      var name = input("Nama");
-      System.out.println("Hi " + name);
-  
-      var channel = input("Channel");
-      System.out.println(channel);
-    }
+
   
     /**
      * Menampilkan view todo list
@@ -132,14 +104,17 @@ public class App {
   
         System.out.println("MENU : ");
         System.out.println("1. Tambah");
-        System.out.println("2. Hapus");
+        System.out.println("2. Ubah");
+        System.out.println("3. Keluar");
         System.out.println("x. Keluar");
   
         var input = input("Pilih");
   
         if (input.equals("1")) {
           viewAddTodoList();
-        } else if (input.equals("2")) {
+        }else if (input.equals("2")) {
+          viewEditTodoList();
+        }else if (input.equals("3")) {
           viewRemoveTodoList();
         } else if (input.equals("x")) {
           break;
@@ -149,14 +124,7 @@ public class App {
       }
     }
   
-    public static void testViewShowTodoList() {
-      addTodoList("Satu");
-      addTodoList("Dua");
-      addTodoList("Tiga");
-      addTodoList("Empat");
-      addTodoList("Lima");
-      viewShowTodoList();
-    }
+
   
     /**
      * Menampilkan view menambahkan todo list
@@ -173,14 +141,24 @@ public class App {
       }
     }
   
-    public static void testViewAddTodoList() {
-      addTodoList("Satu");
-      addTodoList("Dua");
+    public static void viewEditTodoList() {
+      System.out.println("MENGUBAH TODOLIST");
   
-      viewAddTodoList();
+      var number = input("Nomor yang Diubah (x Jika Batal)");
   
-      showTodoList();
-    }
+      if (number.equals("x")) {
+          // batal
+      } else {
+          int todoIndex = Integer.parseInt(number);
+          if (todoIndex > 0 && todoIndex <= model.length && model[todoIndex - 1] != null) {
+              String newTodo = input("Masukkan Perubahan: ");
+              editTodoList(todoIndex, newTodo);
+          } else {
+              System.out.println("Nomor tidak valid atau todolist tidak ada.");
+          }
+      }
+  }
+  
   
     /**
      * Menampilkan view menghapus todo list
@@ -200,18 +178,6 @@ public class App {
       }
     }
   
-    public static void testViewRemoveTodoList() {
-      addTodoList("Satu");
-      addTodoList("Dua");
-      addTodoList("Tiga");
-  
-      showTodoList();
-  
-      viewRemoveTodoList();
-  
-      showTodoList();
-    }
-
 }
 
     
