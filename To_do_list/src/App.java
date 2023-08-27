@@ -52,8 +52,9 @@ public class App {
             if (model[i] == null) {
                 model[i] = todo;
                 System.out.println("Berhasil ditambahkan ke To-Do.");
-                break;
+                return;
             }
+            System.out.println(" to do penuh, tidak dapat menambahkan ke To do");
         }
     }
     public static void displayAllTodo() {
