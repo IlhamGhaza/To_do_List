@@ -1,14 +1,16 @@
 import java.util.Scanner;
 
 public class App {
-    public static String[] model = new String[100];
+    public static String[] model = new String[2];
+    //public static ArrayList<String> model = new ArrayList<>();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
-            viewShowTodoList();}
+            viewShowTodoList();
+        }
     }
-
+    
     public static void viewShowTodoList() {
         System.out.println(" ");
         System.out.println(" ");
@@ -22,6 +24,23 @@ public class App {
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consumes the newline character
 
+        
+    /*     if (choice == 1) {
+            addTodo();
+        } else if (choice == 2) {
+            displayAllTodo();
+        } else if (choice == 3) {
+            editTodo();
+        } else if (choice == 4) {
+            deleteTodo();
+        } else if (choice == 5) {
+            exitProgram();
+        } else {
+            System.out.println("Pilihan tidak valid.");
+        }
+         
+*/
+/* */
         switch (choice) {
             case 1:
                 addTodo();
@@ -39,7 +58,7 @@ public class App {
                 System.out.println("Pilihan tidak valid.");
         }
     }
-
+/* */
     public static void addTodo() {
         System.out.print("Masukkan To-Do baru: ");
         String todo = scanner.nextLine();
@@ -47,7 +66,8 @@ public class App {
         boolean isFull = true; // Inisialisasi dengan asumsi To-Do penuh
     
         for (int i = 0; i < model.length; i++) {
-            if (model[i] == null) {
+        //for (int i = 0; i < model.size(); i++) {
+                if (model[i] == null) {
                 model[i] = todo;
                 System.out.println("Berhasil ditambahkan ke To-Do.");
                 System.out.println("");
@@ -61,7 +81,7 @@ public class App {
     }
     public static void displayAllTodo() {
         System.out.println("===== Seluruh To-Do =====");
-        for (int i = 0; i < model.length; i++) {
+        for (int i = 0; i < model.length; i++) {    
             if (model[i] != null) {
                 System.out.println((i + 1) + ". " + model[i]);
             }
@@ -72,7 +92,7 @@ public class App {
         displayAllTodo();
         System.out.print("Pilih nomor To-Do yang akan diubah: ");
         int index = scanner.nextInt();
-        scanner.nextLine(); // Consumes the newline character
+        scanner.nextLine(); 
 
         if (index >= 1 && index <= model.length && model[index - 1] != null) {
             System.out.print("Masukkan isi To-Do yang baru: ");
@@ -90,7 +110,7 @@ public class App {
         displayAllTodo();
         System.out.print("Pilih nomor To-Do yang akan dihapus: ");
         int index = scanner.nextInt();
-        scanner.nextLine(); // Consumes the newline character
+        scanner.nextLine(); 
 
         if (index >= 1 && index <= model.length && model[index - 1] != null) {
             System.out.print("Anda yakin ingin menghapus To-Do ini? (y/n): ");
@@ -105,7 +125,7 @@ public class App {
             }
         } else {
             System.out.println("Nomor To-Do tidak valid.");
-        }
+        }displayAllTodo();
     }
 
     public static void exitProgram() {
@@ -117,7 +137,6 @@ public class App {
         }else if (choice.equals("n")) {
           System.out.println("Aksi dibatalkan");
           System.out.println(" ");
-          displayAllTodo();
         }else{
           System.out.println(" input tidak valid");
         }
